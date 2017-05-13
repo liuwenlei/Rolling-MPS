@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>index</title>
+    <meta charset="utf-8">
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<link rel="stylesheet" type="text/css" href="style/index.css">
+	
+	<script type="text/javascript" src="js/index.js"></script>
+  </head>
+  
+  <body>
+    <div id="header">
+		<span id="systitle">Rolling MPS</span>
+		<span id="userinfo">
+			<span id="userstatus"></span>
+			<span>:</span>
+			<span id="username"></span>
+			<ul id="usermenu" class="hidden">
+				<li><a href="javascript:void(0);" onclick="nav(event)" id="0">修改资料</a></li>
+				<li><a href="javascript:void(0);" onclick="exit()">退出登录</a></li>
+			</ul>
+		</span>
+	</div>
+	<div id="mainbody">
+		<div id="nav">
+			<ul id="level1">
+				<li>
+					<a href="javascript:void(0);" id="menu1" onclick="expand(event)">控制台</a>
+					<ul id="level2" class="hidden">
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="1">所有订单</a></li>
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="2">所有预测</a></li>
+	
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0);" id="menu2" onclick="expand(event)">基础设置</a>
+					<ul id="level2" class="hidden">
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="4">人员设置</a></li>
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="5">产品设置</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0);" id="menu3" onclick="expand(event)">销售管理</a>
+					<ul id="level2" class="hidden">
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="6">订单管理</a></li>
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="7">预测管理</a></li>
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="8">客户管理</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0);" id="menu4" onclick="expand(event)">仓库管理</a>
+					<ul id="level2" class="hidden">
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="9">产品库存</a></li>
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="10">接收管理</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0);" id="menu5" onclick="expand(event)">MPS管理</a>
+					<ul id="level2" class="hidden"> 
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="11">所有MPS</a></li>
+						<li><a href="javascript:void(0);" onclick="nav(event)" id="12">新建MPS</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="workspace">
+			<div id="personalinfo" class="personcontent nohidden">
+				
+				<div id="personalform">
+				<p id="modifyResult"></p>
+				<div style="display:none;"><span>编号：</span><input type="text" name="userid" ></div>
+				<div><span>姓名：</span><input type="text" name="username"></div>
+				<div><span>账号：</span><input type="text" name="account"></div>
+				<div><span>密码：</span><input type="text" name="password" placeholder="请输入新密码"></div>
+				<div><span>身份：</span><input type="text" readOnly name="status"></div>
+				<div class="btn"><a href="javascript:void(0)" onclick="modifyUserSelf(event)">修改</a></div>
+				</div>
+			</div>
+		
+		
+			<div id="ordercheck" class="checkcontent hidden">
+				<p>>>所有订单</p>
+				<p><a href="javascript:void(0);" onclick="showOrders()">刷新</a></p>
+				<div class="tablebox">
+					<table class="recordtb checkedtb">
+		
+					</table>
+				</div>
+				<div id="orderform">
+				<div><span>订单号：</span><input type="text" name="orderid" disabled></div>
+				<div><span>产品号：</span><select name="productid"></select></div>
+				<div><span>客户号：</span><select name="customerid"></select></div>
+				<div><span>订单量：</span><input type="text" name="orderquantity"></div>
+				<div><span>交货期：</span><input type="date" name="deliverydate"></div>
+				<div class="btn">
+					<a href="javascript:void(0)" onclick="modifyOrder(event)">修改</a>
+					<a href="javascript:void(0)" onclick="deleteOrder(event)">删除</a>
+					<a href="javascript:void(0)" onclick="clearOrderform(event)">取消</a>
+				</div>
+				</div>
+			</div>
+			<div id="forecastcheck" class="checkcontent hidden">
+				<p>>>所有预测</p>
+				<p><a href="javascript:void(0);" onclick="showForecasts()">刷新</a></p>
+				<div class="tablebox">
+					<table class="recordtb checkedtb">
+						
+					</table>
+				</div>
+				<div id="forecastform">
+				<div><span>预测号：</span><input type="text" name="forecastid" disabled></div>
+				<div><span>产品号：</span><select name="productid"></select></div>
+				<div><span>客户号：</span><select name="customerid"></select></div>
+				<div><span>订单量：</span><input type="text" name="forecastquantity"></div>
+				<div><span>交货期：</span><input type="date" name="deliverydate"></div>
+				<div class="btn">
+					<a href="javascript:void(0)" onclick="modifyForecast(event)">修改</a>
+					<a href="javascript:void(0)" onclick="deleteForecast(event)">删除</a>
+					<a href="javascript:void(0)" onclick="clearForecastform(event)">取消</a>
+				</div>
+				</div>
+			</div>
+			
+			<div id="usermanage" class="usercontent hidden">
+				<div class="tablebox">
+					<table class="recordtb usertb">
+						
+					</table>
+				</div>
+				<div id="userform">
+				<div><span>编号：</span><input type="text" name="userid" ></div>
+				<div><span>姓名：</span><input type="text" name="username" ></div>
+				<div><span>账号：</span><input type="text" name="account"></div>
+				<div><span>密码：</span><input type="text" name="password"></div>
+				<div><span>身份：</span><select name="status"><option value="高层">高层</option><option value="管理员">管理员</option><option value="计划员">计划员</option><option value="销售员">销售员</option><option value="仓管员">仓管员</option></select></div>
+				<div class="btn"><a href="javascript:void(0)" style="width:400px; margin-left:55px;" onclick="addUser(event)">添加</a></div>
+				</div>
+			</div>
+			<div id="productinfo" class="productcontent hidden">
+				<div class="tablebox">
+					<table class="recordtb producttb">
+					
+					</table>
+				</div>
+				<div id="productform">
+				<div style="display:none;"><span>产品号：</span><input type="text" name="productid" ></div>
+				<div><span>产品名：</span><input type="text" name="productname" ></div>
+				<div><span>规&nbsp;&nbsp;&nbsp;格：</span><input type="text" name="account"></div>
+				<div><span>提前期：</span><input type="text" name="password"></div>
+				<div class="btn"><a href="javascript:void(0)" style="width:400px; margin-left:63px;" onclick="addProduct(event)">添加</a></div>
+				</div>
+			</div>
+			<div id="ordermanage" class="ordercontent hidden">
+				<p><a href="javascript:void(0);" onclick="addOrderRow(event)">添加</a></p>
+				<p><a href="javascript:void(0);" onclick="submitOrder(event);noRows(event);">提交</a></p>
+				<div class="tablebox">
+					<table class="recordtb ordertb">
+						<tr>
+							<th>序  号</th>
+							<th>产品号</th>
+							<th>客户号</th>
+							<th>订单量</th>
+							<th>交货期</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="forecastmanage" class="ordercontent hidden">
+			
+				<p><a href="javascript:void(0);" onclick="addForecastRow(event)">添加</a></p>
+				<p><a href="javascript:void(0);" onclick=" submitForecast(event);noRows2(event);">提交</a></p>
+				<div class="tablebox">
+					<table class="recordtb forecasttb">
+						<tr>
+							<th>序  号</th>
+							<th>产品号</th>
+							<th>客户号</th>
+							<th>订单量</th>
+							<th>交货期</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="customerinfo" class="customercontent hidden">
+				<div class="tablebox">
+					<table class="recordtb customertb">
+						
+					</table>
+				</div>
+				<div id="customerform">
+				<div style="display:none;"><span>客户号：</span><input type="text" name="customerid"></div>
+				<div><span>客户名：</span><input type="text" name="customername"></div>
+				<div><span>联系人：</span><input type="text" name="contacts"></div>
+				<div><span>手机号：</span><input type="text" name="tel" ></div>
+				<div><span>E-mail：</span><input type="text" name="email"></div>
+				<div><span>所在地：</span><input type="text" name="address"></div>
+				<div class="btn"><a href="javascript:void(0)" style="width:400px; margin-left:61px;" onclick="addCustomer(event)">添加</a></div>
+				</div>
+			</div>
+			<div id="stockmanage" class="stockcontent hidden">
+				<p><a href="javascript:void(0);" onclick="refreshStock(event)">刷新</a></p>
+				<div class="tablebox">
+					<table class="recordtb stocktb">
+
+					</table>
+				</div>
+				<div id="stockform">
+				<div><span>产品号码：</span><input type="text" name="productid" disabled></div>
+				<div><span>产品名称：</span><input type="text" name="productname" disabled></div>
+				<div><span>可用库存：</span><input type="text" name="stock" ></div>
+				<div><span>安全库存：</span><input type="text" name="safestock"></div>
+				<div class="btn">
+					<a href="javascript:void(0)" onclick="modifyStock(event)">修改</a>
+					<a href="javascript:void(0)" onclick="clearStockform(event)">取消</a>
+				</div>
+				</div>
+			</div>
+			<div id="receiptmanage" class="receiptcontent hidden">
+				<div class="tablebox">
+					<table class="recordtb receipttb">
+
+					</table>
+				</div>
+				<div id="receiptform">
+				<div><span>接收号：</span><input type="text" name="receiptid" disabled></div>
+				<div><span>产品号：</span><select name="productid"></select></div>
+				<div><span>接收量：</span><input name="customerid"></input></div>
+				<div><span>来自于：</span><input type="text" name="orderquantity"></div>
+				<div class="btn"><a href="javascript:void(0)" style="width:400px; margin-left:79px;" onclick="addReceipt(event)">添加</a></div>
+				</div>
+			</div>
+			<div id="allmps" class="mpscontent hidden">
+				<p><a href="JavaScript:void(0)" onclick="refreshMPS(event)">刷新</a></p>
+				<p><a href="JavaScript:void(0)" onclick="deleteMPS(event)">删除</a></p>
+				<div class="tablebox">
+					<table class="recordtb mpstb">
+						
+					</table>
+				</div>
+				<div id="mpsdetail">
+					<div class="tablebox">
+						<table id="detailtb" onclick="findTarget(event)">
+						
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="newmps" class="newmpscontent hidden">
+			    <p>新建MPS</p>
+			    <span id="newmpsInfo"></span>
+				<select name="product">
+
+				</select>
+				<input type="text" name="ph" placeholder="计划展望期" />
+				<input type="text" name="lotsize" placeholder="批量" />
+				<input type="text" name="rf" placeholder="需求时界" />
+				<input type="text" name="sf" placeholder="计划时界" />
+				<a href="javascript:void(0)" onclick="createmps(event)">新建</a>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
